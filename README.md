@@ -1,5 +1,14 @@
 ### Ülke Listesi / Istatistikleri Uygulaması
 
+>[Live](https://60fbf5ce285394ddde7f2bfb--kind-fermi-151da9.netlify.app/)
+
+-React
+-TailwindCSS
+-[API](https://restcountries.eu/)
+
+
+
+
 - Lütfen bu uygulamanızı React kullanarak yapın.
 - Bu uygulamada Create-React-App kullanarak bir başlangıç yapın.
 
