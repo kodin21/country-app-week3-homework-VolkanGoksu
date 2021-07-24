@@ -3,19 +3,20 @@ import axios from "axios";
 import "./components/index.css";
 import React from "react";
 import ContactCards from "./components/CountryListCard";
-import Navbar from "./components/Navbar";
 import Statictics from "./components/Statictics";
 
 export default function App() {
   const [countries, setCountries] = useState([]);
+
   const [contryLanguages, setContryLanguages] = useState([]);
-  const [countryStatictsVisible, setCountryStatictsVisible] = useState(true);
+
+  const [countryStatictsVisible, setCountryStatictsVisible] = useState(true); //Buton durumuna göre durum gizlemek için
 
   useEffect(() => {
     axios
       .get("https://restcountries.eu/rest/v2/all")
       // .then((response) => console.log(response.data));
-      // .then((response) => setCountries(response.data));
+
       .then((res) => {
         var countryList = res.data;
         setCountries(countryList);
@@ -28,7 +29,7 @@ export default function App() {
         var distinctLanguageArray = [];
         allLanguages.forEach((language) => {
           var existLanguage = distinctLanguageArray.filter(
-            (l) => l.name == language.name
+            (l) => l.name === language.name
           );
           if (!existLanguage.length) {
             distinctLanguageArray.push({ name: language.name, count: 0 });
@@ -39,7 +40,7 @@ export default function App() {
           countryList.forEach((country) => {
             var countryLanguages = country.languages;
             var languageCount = countryLanguages.filter(
-              (countryLanguage) => countryLanguage.name == distinctLanguage.name
+              (countryLanguage) => countryLanguage.name === distinctLanguage.name
             );
 
             if (languageCount.length)
@@ -56,12 +57,6 @@ export default function App() {
       });
   }, []);
 
-  // const getCountryList = () => {
-  //   axios
-  //     .get("https://restcountries.eu/rest/v2/all")
-  //     .then((response) => setCountries(response.data));
-  // };
-
   const handleClick = (key) => {
     setCountryStatictsVisible(key === "countrys" ? true : false);
   };
@@ -75,7 +70,7 @@ export default function App() {
         >
           Country List
         </button>
-        
+
         <button
           onClick={() => handleClick("staticts")}
           className="mx-8 focus:outline-none focus:ring focus:border-blue-300  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded
@@ -84,10 +79,8 @@ export default function App() {
           Statistics
         </button>
       </div>
-      <Navbar />
-      {/* <Statictics contryStatics={contryLanguages}/> */}
+
       <div className="flex justify-center">
-   
         {countryStatictsVisible ? (
           <section className={"grid sm:grid-cols-2 md:grid-cols-4 gap-6 p-20"}>
             {countries.map((country) => {
