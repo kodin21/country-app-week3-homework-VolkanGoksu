@@ -13,7 +13,7 @@ const CountryListCard = ({ name, flag, capital, language }) => {
         <img
           alt="user"
           className="w-32 h-32 rounded-full mx-auto mt-7"
-          src={flag}
+          src={flag} 
         />
         <figcaption className="text-center mt-5">
           <p className="text-gray-700 font-semibold text-xl mb-2">{name}</p>
